@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-a
+  namespace: poc-networking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-a
+  template:
+    metadata:
+      labels:
+        app: backend-a
+    spec:
+      containers:
+        - name: backend-a
+          # CHANGE THIS LINE
+          image: harshbhatt12/backend-a:v1 
+          imagePullPolicy: Always # Good practice during dev
+          ports:
+            - containerPort: 3000
+          env:
+            - name: BACKEND_B_URL
+              value: http://backend-b

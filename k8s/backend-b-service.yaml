@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-b
+  namespace: poc-networking
+spec:
+  type: ClusterIP
+  selector:
+    app: backend-b
+  ports:
+    - port: 80
+      targetPort: 3000
+

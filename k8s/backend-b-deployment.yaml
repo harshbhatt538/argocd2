@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-b
+  namespace: poc-networking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-b
+  template:
+    metadata:
+      labels:
+        app: backend-b
+    spec:
+      containers:
+        - name: backend-b
+          # CHANGE 1: Update the image to the full Docker Hub path and tag
+          image: harshbhatt12/backend-b:v2 
+          # CHANGE 2: Set policy to Always to ensure K8s pulls the new image
+          imagePullPolicy: Always 
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: postgres-secret
