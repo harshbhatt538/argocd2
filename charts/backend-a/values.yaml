@@ -1,0 +1,14 @@
+replicaCount: 1
+
+image:
+  repository: harshbhatt12/backend-a
+  tag: v1
+  pullPolicy: IfNotPresent
+
+service:
+  port: 80
+  targetPort: 3000
+
+env:
+  BACKEND_B_URL: http://backend-b
+
