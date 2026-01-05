@@ -10,5 +10,5 @@ service:
   targetPort: 3000
 
 env:
-  BACKEND_B_URL: http://backend-b
+  BACKEND_B_URL: http://backend-a
 
