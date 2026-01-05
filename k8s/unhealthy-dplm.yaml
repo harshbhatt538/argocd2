@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unhealthy-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unhealthy-demo
+  template:
+    metadata:
+      labels:
+        app: unhealthy-demo
+    spec:
+      containers:
+        - name: unhealthy-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+
+          # ❌ Liveness probe fails intentionally
+          livenessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - exit 1
+            initialDelaySeconds: 10
+            periodSeconds: 5
+
+          # ❌ Readiness probe fails intentionally
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - exit 1
+            initialDelaySeconds: 5
+            periodSeconds: 5
