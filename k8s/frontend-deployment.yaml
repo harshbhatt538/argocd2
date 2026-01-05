@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: frontend
   namespace: poc-networking
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   replicas: 1
   selector:
