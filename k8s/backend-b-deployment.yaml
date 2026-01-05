@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: backend-b
   namespace: poc-networking
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
   selector:
